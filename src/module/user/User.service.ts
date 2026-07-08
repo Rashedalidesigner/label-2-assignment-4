@@ -25,8 +25,13 @@ const createUserToDb = async(userdata:IUser)=>{
     return user;
 };
 
-const getallUserFromDb = ()=>{
-    
+const getallUserFromDb = async()=>{
+    const user = await prisma.user.findMany({
+        omit:{
+            password:true
+        }
+    });
+    return user;
 }
 
 
