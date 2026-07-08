@@ -89,6 +89,8 @@ CREATE TABLE "User" (
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "role" "role" NOT NULL DEFAULT 'TENANT',
+    "phone" TEXT NOT NULL,
+    "is_Banned" BOOLEAN NOT NULL DEFAULT false,
     "cretedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -100,6 +102,9 @@ CREATE UNIQUE INDEX "Payment_rentalRequest_id_key" ON "Payment"("rentalRequest_i
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Payment_transaction_id_key" ON "Payment"("transaction_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- AddForeignKey
 ALTER TABLE "Payment" ADD CONSTRAINT "Payment_rentalRequest_id_fkey" FOREIGN KEY ("rentalRequest_id") REFERENCES "RentalRequest"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

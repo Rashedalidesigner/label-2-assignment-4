@@ -1,9 +1,11 @@
 model User {
     id String @id @default(uuid())
     name String 
-    email String
+    email String @unique
     password String
     role role @default(TENANT)
+    phone String
+    is_Banned Boolean @default(false)
 
     cretedAt DateTime @default(now())
     updatedAt DateTime @updatedAt
