@@ -30,8 +30,12 @@ const login = async (userdata:ILogin)=>{
     return tokendata
 }
 
+const refreshToken = ()=>{
+    
+}
+
 
 
 export const authService = {
-    login
+    login,refreshToken
 }
