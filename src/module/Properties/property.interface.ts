@@ -1,3 +1,5 @@
+import { PropertiesWhereInput } from "../../../prisma/generated/prisma/models";
+
 export interface IProperties {
     id:string;
     landlord_id :string ;
@@ -9,4 +11,10 @@ export interface IProperties {
     bedroom :number;
     bathroom :number;
     amenities? :string[];
+}
+
+export interface IPropertyQuey extends PropertiesWhereInput {
+    price?: number;
+    location?: string;
+    category?: any;
 }

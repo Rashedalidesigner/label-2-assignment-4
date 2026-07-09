@@ -15,7 +15,8 @@ const CreateProperties = CatchAsync(async(req:Request,res:Response,next:NextFunc
     });
 });
 const getAllProperties = CatchAsync(async(req:Request,res:Response,next:NextFunction)=>{
-    const createdProperties = await Propertiescontroller.getallProperties();
+    const query = req.query;
+    const createdProperties = await Propertiescontroller.getallProperties()
 
     SendResponse(res,{
         success:true,

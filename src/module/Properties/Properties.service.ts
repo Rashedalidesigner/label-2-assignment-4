@@ -1,5 +1,7 @@
+import { Query } from "pg";
 import { prisma } from "../../lib/prisma";
-import { IProperties } from "./property.interface";
+import { IProperties, IPropertyQuey, IQuey } from "./property.interface";
+import { title } from "node:process";
 
 const createProperties = async (properties:IProperties)=>{    
     const {landlord_id,category_id,title,description,bathroom,bedroom,location,price,amenities} = properties;
@@ -19,8 +21,17 @@ const createProperties = async (properties:IProperties)=>{
     return result
 };
 
-const getallProperties = async ()=>{
-    const result 
+const getallProperties = async (query: IPropertyQuey)=>{
+    const result = await prisma.properties.findMany({
+        where:{
+            AND:[
+                query.price? {title:query.title}:{},
+                query.location?{location:query.location}:{},
+                query.category?{category:query.category}:{}
+            ]
+        }
+    })
+    return result;
 }
 
 const getPropertiesDetile = async (id:string)=>{
