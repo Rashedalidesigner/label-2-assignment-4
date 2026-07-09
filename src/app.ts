@@ -3,6 +3,7 @@ import cors from "cors";
 import { userRote } from "./module/user/User.route";
 import { authRoute } from "./module/auth/auth.route";
 import cookiePerser from "cookie-parser";
+import { RentalRequestRoute } from "./module/RentalRequest/Rental.route";
 
 const app:Application = express();
 
@@ -20,5 +21,6 @@ app.get("/",(req:Request,res:Response)=>{
 
 app.use("/api/user",userRote);
 app.use("/api/auth",authRoute);
+app.use("/api/rentals",RentalRequestRoute);
 
 export default app;
