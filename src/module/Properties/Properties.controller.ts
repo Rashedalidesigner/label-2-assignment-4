@@ -24,6 +24,16 @@ const getAllProperties = CatchAsync(async(req:Request,res:Response,next:NextFunc
         data:createdProperties
     });
 });
+const getPropertiesDetiles = CatchAsync(async(req:Request,res:Response,next:NextFunction)=>{
+    const id = req.params.id as string;
+    const createdProperties = await Propertiescontroller.getPropertiesDetile(id);
+    SendResponse(res,{
+        success:true,
+        statusCode:httpStatus.CREATED,
+        message:"Property Created Successfull",
+        data:createdProperties
+    });
+});
 const updateProperties = CatchAsync(async(req:Request,res:Response,next:NextFunction)=>{
     const createdProperties = await Propertiescontroller.updateProperties(req.body);
 
@@ -49,3 +59,10 @@ const deleteProperties = CatchAsync(async(req:Request,res:Response,next:NextFunc
     });
 });
 
+export const PropertiesControler = {
+    CreateProperties,
+    getAllProperties,
+    updateProperties,
+    deleteProperties,
+    getPropertiesDetiles
+}

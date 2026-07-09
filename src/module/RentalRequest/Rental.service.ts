@@ -18,6 +18,19 @@ const getRentalRequest = async ()=>{
     return result;
 }
 
+const updateRentalRequest = async(requestData:IRentalRequest)=>{
+    const {status,id} = requestData;
+    const result = prisma.rentalRequest.update({
+        where:{
+            id
+        },
+        data:{
+            status
+        }
+    });
+    return result;
+}
+
 const getReltalRequestDetiles = async (id:string)=>{
     const result = prisma.rentalRequest.findMany({
         where:{
@@ -29,6 +42,6 @@ const getReltalRequestDetiles = async (id:string)=>{
 
 
 export const RentalReequestService = {
-    submitRentalRequest,
+    submitRentalRequest,updateRentalRequest,
     getRentalRequest,getReltalRequestDetiles
 }
