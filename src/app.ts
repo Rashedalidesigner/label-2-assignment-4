@@ -5,6 +5,7 @@ import { authRoute } from "./module/auth/auth.route";
 import cookiePerser from "cookie-parser";
 import { RentalRequestRoute } from "./module/RentalRequest/Rental.route";
 import { PropertiesRoute } from "./module/Properties/Properties.route";
+import { ReviewRoute } from "./module/review/review.route";
 
 const app:Application = express();
 
@@ -24,5 +25,6 @@ app.use("/api/user",userRote);
 app.use("/api/auth",authRoute);
 app.use("/api/rentals",RentalRequestRoute);
 app.use("/api",PropertiesRoute);
+app.use("/api",ReviewRoute);
 
 export default app;
