@@ -1,6 +1,6 @@
 import { Query } from "pg";
 import { prisma } from "../../lib/prisma";
-import { IProperties, IPropertyQuey, IQuey } from "./property.interface";
+import { IProperties, IPropertyQuey } from "./property.interface";
 import { title } from "node:process";
 
 const createProperties = async (properties:IProperties)=>{    
