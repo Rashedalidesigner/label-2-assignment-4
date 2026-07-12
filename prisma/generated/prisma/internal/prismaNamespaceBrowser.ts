@@ -89,10 +89,13 @@ export type CategoriesScalarFieldEnum = (typeof CategoriesScalarFieldEnum)[keyof
 export const PaymentScalarFieldEnum = {
   id: 'id',
   rentalRequest_id: 'rentalRequest_id',
+  tenantId: 'tenantId',
   transaction_id: 'transaction_id',
   amount: 'amount',
   paymentProvider: 'paymentProvider',
-  paymentStatus: 'paymentStatus',
+  status: 'status',
+  customer_id: 'customer_id',
+  sessionId: 'sessionId',
   paidAt: 'paidAt',
   createdAt: 'createdAt'
 } as const

@@ -214,6 +214,7 @@ export type UserWhereInput = {
   is_Banned?: Prisma.BoolFilter<"User"> | boolean
   cretedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  rents?: Prisma.PaymentListRelationFilter
   properties?: Prisma.PropertiesListRelationFilter
   rentalrequest?: Prisma.RentalRequestListRelationFilter
   review?: Prisma.ReviewListRelationFilter
@@ -229,6 +230,7 @@ export type UserOrderByWithRelationInput = {
   is_Banned?: Prisma.SortOrder
   cretedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  rents?: Prisma.PaymentOrderByRelationAggregateInput
   properties?: Prisma.PropertiesOrderByRelationAggregateInput
   rentalrequest?: Prisma.RentalRequestOrderByRelationAggregateInput
   review?: Prisma.ReviewOrderByRelationAggregateInput
@@ -247,6 +249,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   is_Banned?: Prisma.BoolFilter<"User"> | boolean
   cretedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  rents?: Prisma.PaymentListRelationFilter
   properties?: Prisma.PropertiesListRelationFilter
   rentalrequest?: Prisma.RentalRequestListRelationFilter
   review?: Prisma.ReviewListRelationFilter
@@ -292,6 +295,7 @@ export type UserCreateInput = {
   is_Banned?: boolean
   cretedAt?: Date | string
   updatedAt?: Date | string
+  rents?: Prisma.PaymentCreateNestedManyWithoutTenantInput
   properties?: Prisma.PropertiesCreateNestedManyWithoutLnadlordInput
   rentalrequest?: Prisma.RentalRequestCreateNestedManyWithoutTanentInput
   review?: Prisma.ReviewCreateNestedManyWithoutTenantInput
@@ -307,6 +311,7 @@ export type UserUncheckedCreateInput = {
   is_Banned?: boolean
   cretedAt?: Date | string
   updatedAt?: Date | string
+  rents?: Prisma.PaymentUncheckedCreateNestedManyWithoutTenantInput
   properties?: Prisma.PropertiesUncheckedCreateNestedManyWithoutLnadlordInput
   rentalrequest?: Prisma.RentalRequestUncheckedCreateNestedManyWithoutTanentInput
   review?: Prisma.ReviewUncheckedCreateNestedManyWithoutTenantInput
@@ -322,6 +327,7 @@ export type UserUpdateInput = {
   is_Banned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cretedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rents?: Prisma.PaymentUpdateManyWithoutTenantNestedInput
   properties?: Prisma.PropertiesUpdateManyWithoutLnadlordNestedInput
   rentalrequest?: Prisma.RentalRequestUpdateManyWithoutTanentNestedInput
   review?: Prisma.ReviewUpdateManyWithoutTenantNestedInput
@@ -337,6 +343,7 @@ export type UserUncheckedUpdateInput = {
   is_Banned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cretedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rents?: Prisma.PaymentUncheckedUpdateManyWithoutTenantNestedInput
   properties?: Prisma.PropertiesUncheckedUpdateManyWithoutLnadlordNestedInput
   rentalrequest?: Prisma.RentalRequestUncheckedUpdateManyWithoutTanentNestedInput
   review?: Prisma.ReviewUncheckedUpdateManyWithoutTenantNestedInput
@@ -419,6 +426,20 @@ export type UserMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
+export type UserCreateNestedOneWithoutRentsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRentsInput, Prisma.UserUncheckedCreateWithoutRentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRentsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutRentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRentsInput, Prisma.UserUncheckedCreateWithoutRentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRentsInput
+  upsert?: Prisma.UserUpsertWithoutRentsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRentsInput, Prisma.UserUpdateWithoutRentsInput>, Prisma.UserUncheckedUpdateWithoutRentsInput>
+}
+
 export type UserCreateNestedOneWithoutPropertiesInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutPropertiesInput, Prisma.UserUncheckedCreateWithoutPropertiesInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutPropertiesInput
@@ -469,6 +490,82 @@ export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
+export type UserCreateWithoutRentsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: $Enums.role
+  phone: string
+  is_Banned?: boolean
+  cretedAt?: Date | string
+  updatedAt?: Date | string
+  properties?: Prisma.PropertiesCreateNestedManyWithoutLnadlordInput
+  rentalrequest?: Prisma.RentalRequestCreateNestedManyWithoutTanentInput
+  review?: Prisma.ReviewCreateNestedManyWithoutTenantInput
+}
+
+export type UserUncheckedCreateWithoutRentsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: $Enums.role
+  phone: string
+  is_Banned?: boolean
+  cretedAt?: Date | string
+  updatedAt?: Date | string
+  properties?: Prisma.PropertiesUncheckedCreateNestedManyWithoutLnadlordInput
+  rentalrequest?: Prisma.RentalRequestUncheckedCreateNestedManyWithoutTanentInput
+  review?: Prisma.ReviewUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type UserCreateOrConnectWithoutRentsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRentsInput, Prisma.UserUncheckedCreateWithoutRentsInput>
+}
+
+export type UserUpsertWithoutRentsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRentsInput, Prisma.UserUncheckedUpdateWithoutRentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRentsInput, Prisma.UserUncheckedCreateWithoutRentsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutRentsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRentsInput, Prisma.UserUncheckedUpdateWithoutRentsInput>
+}
+
+export type UserUpdateWithoutRentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumroleFieldUpdateOperationsInput | $Enums.role
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  is_Banned?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cretedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  properties?: Prisma.PropertiesUpdateManyWithoutLnadlordNestedInput
+  rentalrequest?: Prisma.RentalRequestUpdateManyWithoutTanentNestedInput
+  review?: Prisma.ReviewUpdateManyWithoutTenantNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumroleFieldUpdateOperationsInput | $Enums.role
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  is_Banned?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  cretedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  properties?: Prisma.PropertiesUncheckedUpdateManyWithoutLnadlordNestedInput
+  rentalrequest?: Prisma.RentalRequestUncheckedUpdateManyWithoutTanentNestedInput
+  review?: Prisma.ReviewUncheckedUpdateManyWithoutTenantNestedInput
+}
+
 export type UserCreateWithoutPropertiesInput = {
   id?: string
   name: string
@@ -479,6 +576,7 @@ export type UserCreateWithoutPropertiesInput = {
   is_Banned?: boolean
   cretedAt?: Date | string
   updatedAt?: Date | string
+  rents?: Prisma.PaymentCreateNestedManyWithoutTenantInput
   rentalrequest?: Prisma.RentalRequestCreateNestedManyWithoutTanentInput
   review?: Prisma.ReviewCreateNestedManyWithoutTenantInput
 }
@@ -493,6 +591,7 @@ export type UserUncheckedCreateWithoutPropertiesInput = {
   is_Banned?: boolean
   cretedAt?: Date | string
   updatedAt?: Date | string
+  rents?: Prisma.PaymentUncheckedCreateNestedManyWithoutTenantInput
   rentalrequest?: Prisma.RentalRequestUncheckedCreateNestedManyWithoutTanentInput
   review?: Prisma.ReviewUncheckedCreateNestedManyWithoutTenantInput
 }
@@ -523,6 +622,7 @@ export type UserUpdateWithoutPropertiesInput = {
   is_Banned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cretedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rents?: Prisma.PaymentUpdateManyWithoutTenantNestedInput
   rentalrequest?: Prisma.RentalRequestUpdateManyWithoutTanentNestedInput
   review?: Prisma.ReviewUpdateManyWithoutTenantNestedInput
 }
@@ -537,6 +637,7 @@ export type UserUncheckedUpdateWithoutPropertiesInput = {
   is_Banned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cretedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rents?: Prisma.PaymentUncheckedUpdateManyWithoutTenantNestedInput
   rentalrequest?: Prisma.RentalRequestUncheckedUpdateManyWithoutTanentNestedInput
   review?: Prisma.ReviewUncheckedUpdateManyWithoutTenantNestedInput
 }
@@ -551,6 +652,7 @@ export type UserCreateWithoutRentalrequestInput = {
   is_Banned?: boolean
   cretedAt?: Date | string
   updatedAt?: Date | string
+  rents?: Prisma.PaymentCreateNestedManyWithoutTenantInput
   properties?: Prisma.PropertiesCreateNestedManyWithoutLnadlordInput
   review?: Prisma.ReviewCreateNestedManyWithoutTenantInput
 }
@@ -565,6 +667,7 @@ export type UserUncheckedCreateWithoutRentalrequestInput = {
   is_Banned?: boolean
   cretedAt?: Date | string
   updatedAt?: Date | string
+  rents?: Prisma.PaymentUncheckedCreateNestedManyWithoutTenantInput
   properties?: Prisma.PropertiesUncheckedCreateNestedManyWithoutLnadlordInput
   review?: Prisma.ReviewUncheckedCreateNestedManyWithoutTenantInput
 }
@@ -595,6 +698,7 @@ export type UserUpdateWithoutRentalrequestInput = {
   is_Banned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cretedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rents?: Prisma.PaymentUpdateManyWithoutTenantNestedInput
   properties?: Prisma.PropertiesUpdateManyWithoutLnadlordNestedInput
   review?: Prisma.ReviewUpdateManyWithoutTenantNestedInput
 }
@@ -609,6 +713,7 @@ export type UserUncheckedUpdateWithoutRentalrequestInput = {
   is_Banned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cretedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rents?: Prisma.PaymentUncheckedUpdateManyWithoutTenantNestedInput
   properties?: Prisma.PropertiesUncheckedUpdateManyWithoutLnadlordNestedInput
   review?: Prisma.ReviewUncheckedUpdateManyWithoutTenantNestedInput
 }
@@ -623,6 +728,7 @@ export type UserCreateWithoutReviewInput = {
   is_Banned?: boolean
   cretedAt?: Date | string
   updatedAt?: Date | string
+  rents?: Prisma.PaymentCreateNestedManyWithoutTenantInput
   properties?: Prisma.PropertiesCreateNestedManyWithoutLnadlordInput
   rentalrequest?: Prisma.RentalRequestCreateNestedManyWithoutTanentInput
 }
@@ -637,6 +743,7 @@ export type UserUncheckedCreateWithoutReviewInput = {
   is_Banned?: boolean
   cretedAt?: Date | string
   updatedAt?: Date | string
+  rents?: Prisma.PaymentUncheckedCreateNestedManyWithoutTenantInput
   properties?: Prisma.PropertiesUncheckedCreateNestedManyWithoutLnadlordInput
   rentalrequest?: Prisma.RentalRequestUncheckedCreateNestedManyWithoutTanentInput
 }
@@ -667,6 +774,7 @@ export type UserUpdateWithoutReviewInput = {
   is_Banned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cretedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rents?: Prisma.PaymentUpdateManyWithoutTenantNestedInput
   properties?: Prisma.PropertiesUpdateManyWithoutLnadlordNestedInput
   rentalrequest?: Prisma.RentalRequestUpdateManyWithoutTanentNestedInput
 }
@@ -681,6 +789,7 @@ export type UserUncheckedUpdateWithoutReviewInput = {
   is_Banned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cretedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rents?: Prisma.PaymentUncheckedUpdateManyWithoutTenantNestedInput
   properties?: Prisma.PropertiesUncheckedUpdateManyWithoutLnadlordNestedInput
   rentalrequest?: Prisma.RentalRequestUncheckedUpdateManyWithoutTanentNestedInput
 }
@@ -691,12 +800,14 @@ export type UserUncheckedUpdateWithoutReviewInput = {
  */
 
 export type UserCountOutputType = {
+  rents: number
   properties: number
   rentalrequest: number
   review: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  rents?: boolean | UserCountOutputTypeCountRentsArgs
   properties?: boolean | UserCountOutputTypeCountPropertiesArgs
   rentalrequest?: boolean | UserCountOutputTypeCountRentalrequestArgs
   review?: boolean | UserCountOutputTypeCountReviewArgs
@@ -710,6 +821,13 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
    * Select specific fields to fetch from the UserCountOutputType
    */
   select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentWhereInput
 }
 
 /**
@@ -744,6 +862,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   is_Banned?: boolean
   cretedAt?: boolean
   updatedAt?: boolean
+  rents?: boolean | Prisma.User$rentsArgs<ExtArgs>
   properties?: boolean | Prisma.User$propertiesArgs<ExtArgs>
   rentalrequest?: boolean | Prisma.User$rentalrequestArgs<ExtArgs>
   review?: boolean | Prisma.User$reviewArgs<ExtArgs>
@@ -788,6 +907,7 @@ export type UserSelectScalar = {
 
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "phone" | "is_Banned" | "cretedAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  rents?: boolean | Prisma.User$rentsArgs<ExtArgs>
   properties?: boolean | Prisma.User$propertiesArgs<ExtArgs>
   rentalrequest?: boolean | Prisma.User$rentalrequestArgs<ExtArgs>
   review?: boolean | Prisma.User$reviewArgs<ExtArgs>
@@ -799,6 +919,7 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
+    rents: Prisma.$PaymentPayload<ExtArgs>[]
     properties: Prisma.$PropertiesPayload<ExtArgs>[]
     rentalrequest: Prisma.$RentalRequestPayload<ExtArgs>[]
     review: Prisma.$ReviewPayload<ExtArgs>[]
@@ -1207,6 +1328,7 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  rents<T extends Prisma.User$rentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$rentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   properties<T extends Prisma.User$propertiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$propertiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PropertiesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   rentalrequest<T extends Prisma.User$rentalrequestArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$rentalrequestArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RentalRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   review<T extends Prisma.User$reviewArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1638,6 +1760,30 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Users to delete.
    */
   limit?: number
+}
+
+/**
+ * User.rents
+ */
+export type User$rentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Payment
+   */
+  select?: Prisma.PaymentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Payment
+   */
+  omit?: Prisma.PaymentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentInclude<ExtArgs> | null
+  where?: Prisma.PaymentWhereInput
+  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
 }
 
 /**

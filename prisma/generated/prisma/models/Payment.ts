@@ -37,10 +37,13 @@ export type PaymentSumAggregateOutputType = {
 export type PaymentMinAggregateOutputType = {
   id: string | null
   rentalRequest_id: string | null
+  tenantId: string | null
   transaction_id: string | null
   amount: number | null
   paymentProvider: $Enums.paymentProvider | null
-  paymentStatus: $Enums.paymentStatus | null
+  status: $Enums.paymentStatus | null
+  customer_id: string | null
+  sessionId: string | null
   paidAt: Date | null
   createdAt: Date | null
 }
@@ -48,10 +51,13 @@ export type PaymentMinAggregateOutputType = {
 export type PaymentMaxAggregateOutputType = {
   id: string | null
   rentalRequest_id: string | null
+  tenantId: string | null
   transaction_id: string | null
   amount: number | null
   paymentProvider: $Enums.paymentProvider | null
-  paymentStatus: $Enums.paymentStatus | null
+  status: $Enums.paymentStatus | null
+  customer_id: string | null
+  sessionId: string | null
   paidAt: Date | null
   createdAt: Date | null
 }
@@ -59,10 +65,13 @@ export type PaymentMaxAggregateOutputType = {
 export type PaymentCountAggregateOutputType = {
   id: number
   rentalRequest_id: number
+  tenantId: number
   transaction_id: number
   amount: number
   paymentProvider: number
-  paymentStatus: number
+  status: number
+  customer_id: number
+  sessionId: number
   paidAt: number
   createdAt: number
   _all: number
@@ -80,10 +89,13 @@ export type PaymentSumAggregateInputType = {
 export type PaymentMinAggregateInputType = {
   id?: true
   rentalRequest_id?: true
+  tenantId?: true
   transaction_id?: true
   amount?: true
   paymentProvider?: true
-  paymentStatus?: true
+  status?: true
+  customer_id?: true
+  sessionId?: true
   paidAt?: true
   createdAt?: true
 }
@@ -91,10 +103,13 @@ export type PaymentMinAggregateInputType = {
 export type PaymentMaxAggregateInputType = {
   id?: true
   rentalRequest_id?: true
+  tenantId?: true
   transaction_id?: true
   amount?: true
   paymentProvider?: true
-  paymentStatus?: true
+  status?: true
+  customer_id?: true
+  sessionId?: true
   paidAt?: true
   createdAt?: true
 }
@@ -102,10 +117,13 @@ export type PaymentMaxAggregateInputType = {
 export type PaymentCountAggregateInputType = {
   id?: true
   rentalRequest_id?: true
+  tenantId?: true
   transaction_id?: true
   amount?: true
   paymentProvider?: true
-  paymentStatus?: true
+  status?: true
+  customer_id?: true
+  sessionId?: true
   paidAt?: true
   createdAt?: true
   _all?: true
@@ -200,10 +218,13 @@ export type PaymentGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 export type PaymentGroupByOutputType = {
   id: string
   rentalRequest_id: string
+  tenantId: string
   transaction_id: string
   amount: number
   paymentProvider: $Enums.paymentProvider
-  paymentStatus: $Enums.paymentStatus
+  status: $Enums.paymentStatus
+  customer_id: string
+  sessionId: string | null
   paidAt: Date | null
   createdAt: Date
   _count: PaymentCountAggregateOutputType | null
@@ -234,49 +255,64 @@ export type PaymentWhereInput = {
   NOT?: Prisma.PaymentWhereInput | Prisma.PaymentWhereInput[]
   id?: Prisma.StringFilter<"Payment"> | string
   rentalRequest_id?: Prisma.StringFilter<"Payment"> | string
+  tenantId?: Prisma.StringFilter<"Payment"> | string
   transaction_id?: Prisma.StringFilter<"Payment"> | string
   amount?: Prisma.FloatFilter<"Payment"> | number
   paymentProvider?: Prisma.EnumpaymentProviderFilter<"Payment"> | $Enums.paymentProvider
-  paymentStatus?: Prisma.EnumpaymentStatusFilter<"Payment"> | $Enums.paymentStatus
+  status?: Prisma.EnumpaymentStatusFilter<"Payment"> | $Enums.paymentStatus
+  customer_id?: Prisma.StringFilter<"Payment"> | string
+  sessionId?: Prisma.StringNullableFilter<"Payment"> | string | null
   paidAt?: Prisma.DateTimeNullableFilter<"Payment"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Payment"> | Date | string
-  rentalRequst?: Prisma.XOR<Prisma.RentalRequestScalarRelationFilter, Prisma.RentalRequestWhereInput>
+  rentalRequest?: Prisma.XOR<Prisma.RentalRequestScalarRelationFilter, Prisma.RentalRequestWhereInput>
+  tenant?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type PaymentOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   rentalRequest_id?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   transaction_id?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   paymentProvider?: Prisma.SortOrder
-  paymentStatus?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  customer_id?: Prisma.SortOrder
+  sessionId?: Prisma.SortOrderInput | Prisma.SortOrder
   paidAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  rentalRequst?: Prisma.RentalRequestOrderByWithRelationInput
+  rentalRequest?: Prisma.RentalRequestOrderByWithRelationInput
+  tenant?: Prisma.UserOrderByWithRelationInput
 }
 
 export type PaymentWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   rentalRequest_id?: string
-  transaction_id?: string
+  customer_id?: string
   AND?: Prisma.PaymentWhereInput | Prisma.PaymentWhereInput[]
   OR?: Prisma.PaymentWhereInput[]
   NOT?: Prisma.PaymentWhereInput | Prisma.PaymentWhereInput[]
+  tenantId?: Prisma.StringFilter<"Payment"> | string
+  transaction_id?: Prisma.StringFilter<"Payment"> | string
   amount?: Prisma.FloatFilter<"Payment"> | number
   paymentProvider?: Prisma.EnumpaymentProviderFilter<"Payment"> | $Enums.paymentProvider
-  paymentStatus?: Prisma.EnumpaymentStatusFilter<"Payment"> | $Enums.paymentStatus
+  status?: Prisma.EnumpaymentStatusFilter<"Payment"> | $Enums.paymentStatus
+  sessionId?: Prisma.StringNullableFilter<"Payment"> | string | null
   paidAt?: Prisma.DateTimeNullableFilter<"Payment"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Payment"> | Date | string
-  rentalRequst?: Prisma.XOR<Prisma.RentalRequestScalarRelationFilter, Prisma.RentalRequestWhereInput>
-}, "id" | "rentalRequest_id" | "transaction_id">
+  rentalRequest?: Prisma.XOR<Prisma.RentalRequestScalarRelationFilter, Prisma.RentalRequestWhereInput>
+  tenant?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+}, "id" | "rentalRequest_id" | "customer_id">
 
 export type PaymentOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   rentalRequest_id?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   transaction_id?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   paymentProvider?: Prisma.SortOrder
-  paymentStatus?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  customer_id?: Prisma.SortOrder
+  sessionId?: Prisma.SortOrderInput | Prisma.SortOrder
   paidAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.PaymentCountOrderByAggregateInput
@@ -292,10 +328,13 @@ export type PaymentScalarWhereWithAggregatesInput = {
   NOT?: Prisma.PaymentScalarWhereWithAggregatesInput | Prisma.PaymentScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Payment"> | string
   rentalRequest_id?: Prisma.StringWithAggregatesFilter<"Payment"> | string
+  tenantId?: Prisma.StringWithAggregatesFilter<"Payment"> | string
   transaction_id?: Prisma.StringWithAggregatesFilter<"Payment"> | string
   amount?: Prisma.FloatWithAggregatesFilter<"Payment"> | number
   paymentProvider?: Prisma.EnumpaymentProviderWithAggregatesFilter<"Payment"> | $Enums.paymentProvider
-  paymentStatus?: Prisma.EnumpaymentStatusWithAggregatesFilter<"Payment"> | $Enums.paymentStatus
+  status?: Prisma.EnumpaymentStatusWithAggregatesFilter<"Payment"> | $Enums.paymentStatus
+  customer_id?: Prisma.StringWithAggregatesFilter<"Payment"> | string
+  sessionId?: Prisma.StringNullableWithAggregatesFilter<"Payment"> | string | null
   paidAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Payment"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Payment"> | Date | string
 }
@@ -305,19 +344,25 @@ export type PaymentCreateInput = {
   transaction_id: string
   amount: number
   paymentProvider?: $Enums.paymentProvider
-  paymentStatus?: $Enums.paymentStatus
+  status?: $Enums.paymentStatus
+  customer_id: string
+  sessionId?: string | null
   paidAt?: Date | string | null
   createdAt?: Date | string
-  rentalRequst: Prisma.RentalRequestCreateNestedOneWithoutPaymentInput
+  rentalRequest: Prisma.RentalRequestCreateNestedOneWithoutPaymentInput
+  tenant: Prisma.UserCreateNestedOneWithoutRentsInput
 }
 
 export type PaymentUncheckedCreateInput = {
   id?: string
   rentalRequest_id: string
+  tenantId: string
   transaction_id: string
   amount: number
   paymentProvider?: $Enums.paymentProvider
-  paymentStatus?: $Enums.paymentStatus
+  status?: $Enums.paymentStatus
+  customer_id: string
+  sessionId?: string | null
   paidAt?: Date | string | null
   createdAt?: Date | string
 }
@@ -327,19 +372,25 @@ export type PaymentUpdateInput = {
   transaction_id?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
   paymentProvider?: Prisma.EnumpaymentProviderFieldUpdateOperationsInput | $Enums.paymentProvider
-  paymentStatus?: Prisma.EnumpaymentStatusFieldUpdateOperationsInput | $Enums.paymentStatus
+  status?: Prisma.EnumpaymentStatusFieldUpdateOperationsInput | $Enums.paymentStatus
+  customer_id?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  rentalRequst?: Prisma.RentalRequestUpdateOneRequiredWithoutPaymentNestedInput
+  rentalRequest?: Prisma.RentalRequestUpdateOneRequiredWithoutPaymentNestedInput
+  tenant?: Prisma.UserUpdateOneRequiredWithoutRentsNestedInput
 }
 
 export type PaymentUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   rentalRequest_id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   transaction_id?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
   paymentProvider?: Prisma.EnumpaymentProviderFieldUpdateOperationsInput | $Enums.paymentProvider
-  paymentStatus?: Prisma.EnumpaymentStatusFieldUpdateOperationsInput | $Enums.paymentStatus
+  status?: Prisma.EnumpaymentStatusFieldUpdateOperationsInput | $Enums.paymentStatus
+  customer_id?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -347,10 +398,13 @@ export type PaymentUncheckedUpdateInput = {
 export type PaymentCreateManyInput = {
   id?: string
   rentalRequest_id: string
+  tenantId: string
   transaction_id: string
   amount: number
   paymentProvider?: $Enums.paymentProvider
-  paymentStatus?: $Enums.paymentStatus
+  status?: $Enums.paymentStatus
+  customer_id: string
+  sessionId?: string | null
   paidAt?: Date | string | null
   createdAt?: Date | string
 }
@@ -360,7 +414,9 @@ export type PaymentUpdateManyMutationInput = {
   transaction_id?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
   paymentProvider?: Prisma.EnumpaymentProviderFieldUpdateOperationsInput | $Enums.paymentProvider
-  paymentStatus?: Prisma.EnumpaymentStatusFieldUpdateOperationsInput | $Enums.paymentStatus
+  status?: Prisma.EnumpaymentStatusFieldUpdateOperationsInput | $Enums.paymentStatus
+  customer_id?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -368,10 +424,13 @@ export type PaymentUpdateManyMutationInput = {
 export type PaymentUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   rentalRequest_id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   transaction_id?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
   paymentProvider?: Prisma.EnumpaymentProviderFieldUpdateOperationsInput | $Enums.paymentProvider
-  paymentStatus?: Prisma.EnumpaymentStatusFieldUpdateOperationsInput | $Enums.paymentStatus
+  status?: Prisma.EnumpaymentStatusFieldUpdateOperationsInput | $Enums.paymentStatus
+  customer_id?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -379,10 +438,13 @@ export type PaymentUncheckedUpdateManyInput = {
 export type PaymentCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   rentalRequest_id?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   transaction_id?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   paymentProvider?: Prisma.SortOrder
-  paymentStatus?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  customer_id?: Prisma.SortOrder
+  sessionId?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -394,10 +456,13 @@ export type PaymentAvgOrderByAggregateInput = {
 export type PaymentMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   rentalRequest_id?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   transaction_id?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   paymentProvider?: Prisma.SortOrder
-  paymentStatus?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  customer_id?: Prisma.SortOrder
+  sessionId?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -405,10 +470,13 @@ export type PaymentMaxOrderByAggregateInput = {
 export type PaymentMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   rentalRequest_id?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   transaction_id?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   paymentProvider?: Prisma.SortOrder
-  paymentStatus?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  customer_id?: Prisma.SortOrder
+  sessionId?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -420,6 +488,16 @@ export type PaymentSumOrderByAggregateInput = {
 export type PaymentNullableScalarRelationFilter = {
   is?: Prisma.PaymentWhereInput | null
   isNot?: Prisma.PaymentWhereInput | null
+}
+
+export type PaymentListRelationFilter = {
+  every?: Prisma.PaymentWhereInput
+  some?: Prisma.PaymentWhereInput
+  none?: Prisma.PaymentWhereInput
+}
+
+export type PaymentOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type FloatFieldUpdateOperationsInput = {
@@ -438,94 +516,273 @@ export type EnumpaymentStatusFieldUpdateOperationsInput = {
   set?: $Enums.paymentStatus
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
-export type PaymentCreateNestedOneWithoutRentalRequstInput = {
-  create?: Prisma.XOR<Prisma.PaymentCreateWithoutRentalRequstInput, Prisma.PaymentUncheckedCreateWithoutRentalRequstInput>
-  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutRentalRequstInput
+export type PaymentCreateNestedOneWithoutRentalRequestInput = {
+  create?: Prisma.XOR<Prisma.PaymentCreateWithoutRentalRequestInput, Prisma.PaymentUncheckedCreateWithoutRentalRequestInput>
+  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutRentalRequestInput
   connect?: Prisma.PaymentWhereUniqueInput
 }
 
-export type PaymentUncheckedCreateNestedOneWithoutRentalRequstInput = {
-  create?: Prisma.XOR<Prisma.PaymentCreateWithoutRentalRequstInput, Prisma.PaymentUncheckedCreateWithoutRentalRequstInput>
-  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutRentalRequstInput
+export type PaymentUncheckedCreateNestedOneWithoutRentalRequestInput = {
+  create?: Prisma.XOR<Prisma.PaymentCreateWithoutRentalRequestInput, Prisma.PaymentUncheckedCreateWithoutRentalRequestInput>
+  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutRentalRequestInput
   connect?: Prisma.PaymentWhereUniqueInput
 }
 
-export type PaymentUpdateOneWithoutRentalRequstNestedInput = {
-  create?: Prisma.XOR<Prisma.PaymentCreateWithoutRentalRequstInput, Prisma.PaymentUncheckedCreateWithoutRentalRequstInput>
-  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutRentalRequstInput
-  upsert?: Prisma.PaymentUpsertWithoutRentalRequstInput
+export type PaymentUpdateOneWithoutRentalRequestNestedInput = {
+  create?: Prisma.XOR<Prisma.PaymentCreateWithoutRentalRequestInput, Prisma.PaymentUncheckedCreateWithoutRentalRequestInput>
+  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutRentalRequestInput
+  upsert?: Prisma.PaymentUpsertWithoutRentalRequestInput
   disconnect?: Prisma.PaymentWhereInput | boolean
   delete?: Prisma.PaymentWhereInput | boolean
   connect?: Prisma.PaymentWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PaymentUpdateToOneWithWhereWithoutRentalRequstInput, Prisma.PaymentUpdateWithoutRentalRequstInput>, Prisma.PaymentUncheckedUpdateWithoutRentalRequstInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PaymentUpdateToOneWithWhereWithoutRentalRequestInput, Prisma.PaymentUpdateWithoutRentalRequestInput>, Prisma.PaymentUncheckedUpdateWithoutRentalRequestInput>
 }
 
-export type PaymentUncheckedUpdateOneWithoutRentalRequstNestedInput = {
-  create?: Prisma.XOR<Prisma.PaymentCreateWithoutRentalRequstInput, Prisma.PaymentUncheckedCreateWithoutRentalRequstInput>
-  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutRentalRequstInput
-  upsert?: Prisma.PaymentUpsertWithoutRentalRequstInput
+export type PaymentUncheckedUpdateOneWithoutRentalRequestNestedInput = {
+  create?: Prisma.XOR<Prisma.PaymentCreateWithoutRentalRequestInput, Prisma.PaymentUncheckedCreateWithoutRentalRequestInput>
+  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutRentalRequestInput
+  upsert?: Prisma.PaymentUpsertWithoutRentalRequestInput
   disconnect?: Prisma.PaymentWhereInput | boolean
   delete?: Prisma.PaymentWhereInput | boolean
   connect?: Prisma.PaymentWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PaymentUpdateToOneWithWhereWithoutRentalRequstInput, Prisma.PaymentUpdateWithoutRentalRequstInput>, Prisma.PaymentUncheckedUpdateWithoutRentalRequstInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PaymentUpdateToOneWithWhereWithoutRentalRequestInput, Prisma.PaymentUpdateWithoutRentalRequestInput>, Prisma.PaymentUncheckedUpdateWithoutRentalRequestInput>
 }
 
-export type PaymentCreateWithoutRentalRequstInput = {
+export type PaymentCreateNestedManyWithoutTenantInput = {
+  create?: Prisma.XOR<Prisma.PaymentCreateWithoutTenantInput, Prisma.PaymentUncheckedCreateWithoutTenantInput> | Prisma.PaymentCreateWithoutTenantInput[] | Prisma.PaymentUncheckedCreateWithoutTenantInput[]
+  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutTenantInput | Prisma.PaymentCreateOrConnectWithoutTenantInput[]
+  createMany?: Prisma.PaymentCreateManyTenantInputEnvelope
+  connect?: Prisma.PaymentWhereUniqueInput | Prisma.PaymentWhereUniqueInput[]
+}
+
+export type PaymentUncheckedCreateNestedManyWithoutTenantInput = {
+  create?: Prisma.XOR<Prisma.PaymentCreateWithoutTenantInput, Prisma.PaymentUncheckedCreateWithoutTenantInput> | Prisma.PaymentCreateWithoutTenantInput[] | Prisma.PaymentUncheckedCreateWithoutTenantInput[]
+  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutTenantInput | Prisma.PaymentCreateOrConnectWithoutTenantInput[]
+  createMany?: Prisma.PaymentCreateManyTenantInputEnvelope
+  connect?: Prisma.PaymentWhereUniqueInput | Prisma.PaymentWhereUniqueInput[]
+}
+
+export type PaymentUpdateManyWithoutTenantNestedInput = {
+  create?: Prisma.XOR<Prisma.PaymentCreateWithoutTenantInput, Prisma.PaymentUncheckedCreateWithoutTenantInput> | Prisma.PaymentCreateWithoutTenantInput[] | Prisma.PaymentUncheckedCreateWithoutTenantInput[]
+  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutTenantInput | Prisma.PaymentCreateOrConnectWithoutTenantInput[]
+  upsert?: Prisma.PaymentUpsertWithWhereUniqueWithoutTenantInput | Prisma.PaymentUpsertWithWhereUniqueWithoutTenantInput[]
+  createMany?: Prisma.PaymentCreateManyTenantInputEnvelope
+  set?: Prisma.PaymentWhereUniqueInput | Prisma.PaymentWhereUniqueInput[]
+  disconnect?: Prisma.PaymentWhereUniqueInput | Prisma.PaymentWhereUniqueInput[]
+  delete?: Prisma.PaymentWhereUniqueInput | Prisma.PaymentWhereUniqueInput[]
+  connect?: Prisma.PaymentWhereUniqueInput | Prisma.PaymentWhereUniqueInput[]
+  update?: Prisma.PaymentUpdateWithWhereUniqueWithoutTenantInput | Prisma.PaymentUpdateWithWhereUniqueWithoutTenantInput[]
+  updateMany?: Prisma.PaymentUpdateManyWithWhereWithoutTenantInput | Prisma.PaymentUpdateManyWithWhereWithoutTenantInput[]
+  deleteMany?: Prisma.PaymentScalarWhereInput | Prisma.PaymentScalarWhereInput[]
+}
+
+export type PaymentUncheckedUpdateManyWithoutTenantNestedInput = {
+  create?: Prisma.XOR<Prisma.PaymentCreateWithoutTenantInput, Prisma.PaymentUncheckedCreateWithoutTenantInput> | Prisma.PaymentCreateWithoutTenantInput[] | Prisma.PaymentUncheckedCreateWithoutTenantInput[]
+  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutTenantInput | Prisma.PaymentCreateOrConnectWithoutTenantInput[]
+  upsert?: Prisma.PaymentUpsertWithWhereUniqueWithoutTenantInput | Prisma.PaymentUpsertWithWhereUniqueWithoutTenantInput[]
+  createMany?: Prisma.PaymentCreateManyTenantInputEnvelope
+  set?: Prisma.PaymentWhereUniqueInput | Prisma.PaymentWhereUniqueInput[]
+  disconnect?: Prisma.PaymentWhereUniqueInput | Prisma.PaymentWhereUniqueInput[]
+  delete?: Prisma.PaymentWhereUniqueInput | Prisma.PaymentWhereUniqueInput[]
+  connect?: Prisma.PaymentWhereUniqueInput | Prisma.PaymentWhereUniqueInput[]
+  update?: Prisma.PaymentUpdateWithWhereUniqueWithoutTenantInput | Prisma.PaymentUpdateWithWhereUniqueWithoutTenantInput[]
+  updateMany?: Prisma.PaymentUpdateManyWithWhereWithoutTenantInput | Prisma.PaymentUpdateManyWithWhereWithoutTenantInput[]
+  deleteMany?: Prisma.PaymentScalarWhereInput | Prisma.PaymentScalarWhereInput[]
+}
+
+export type PaymentCreateWithoutRentalRequestInput = {
   id?: string
   transaction_id: string
   amount: number
   paymentProvider?: $Enums.paymentProvider
-  paymentStatus?: $Enums.paymentStatus
+  status?: $Enums.paymentStatus
+  customer_id: string
+  sessionId?: string | null
   paidAt?: Date | string | null
   createdAt?: Date | string
+  tenant: Prisma.UserCreateNestedOneWithoutRentsInput
 }
 
-export type PaymentUncheckedCreateWithoutRentalRequstInput = {
+export type PaymentUncheckedCreateWithoutRentalRequestInput = {
   id?: string
+  tenantId: string
   transaction_id: string
   amount: number
   paymentProvider?: $Enums.paymentProvider
-  paymentStatus?: $Enums.paymentStatus
+  status?: $Enums.paymentStatus
+  customer_id: string
+  sessionId?: string | null
   paidAt?: Date | string | null
   createdAt?: Date | string
 }
 
-export type PaymentCreateOrConnectWithoutRentalRequstInput = {
+export type PaymentCreateOrConnectWithoutRentalRequestInput = {
   where: Prisma.PaymentWhereUniqueInput
-  create: Prisma.XOR<Prisma.PaymentCreateWithoutRentalRequstInput, Prisma.PaymentUncheckedCreateWithoutRentalRequstInput>
+  create: Prisma.XOR<Prisma.PaymentCreateWithoutRentalRequestInput, Prisma.PaymentUncheckedCreateWithoutRentalRequestInput>
 }
 
-export type PaymentUpsertWithoutRentalRequstInput = {
-  update: Prisma.XOR<Prisma.PaymentUpdateWithoutRentalRequstInput, Prisma.PaymentUncheckedUpdateWithoutRentalRequstInput>
-  create: Prisma.XOR<Prisma.PaymentCreateWithoutRentalRequstInput, Prisma.PaymentUncheckedCreateWithoutRentalRequstInput>
+export type PaymentUpsertWithoutRentalRequestInput = {
+  update: Prisma.XOR<Prisma.PaymentUpdateWithoutRentalRequestInput, Prisma.PaymentUncheckedUpdateWithoutRentalRequestInput>
+  create: Prisma.XOR<Prisma.PaymentCreateWithoutRentalRequestInput, Prisma.PaymentUncheckedCreateWithoutRentalRequestInput>
   where?: Prisma.PaymentWhereInput
 }
 
-export type PaymentUpdateToOneWithWhereWithoutRentalRequstInput = {
+export type PaymentUpdateToOneWithWhereWithoutRentalRequestInput = {
   where?: Prisma.PaymentWhereInput
-  data: Prisma.XOR<Prisma.PaymentUpdateWithoutRentalRequstInput, Prisma.PaymentUncheckedUpdateWithoutRentalRequstInput>
+  data: Prisma.XOR<Prisma.PaymentUpdateWithoutRentalRequestInput, Prisma.PaymentUncheckedUpdateWithoutRentalRequestInput>
 }
 
-export type PaymentUpdateWithoutRentalRequstInput = {
+export type PaymentUpdateWithoutRentalRequestInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   transaction_id?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
   paymentProvider?: Prisma.EnumpaymentProviderFieldUpdateOperationsInput | $Enums.paymentProvider
-  paymentStatus?: Prisma.EnumpaymentStatusFieldUpdateOperationsInput | $Enums.paymentStatus
+  status?: Prisma.EnumpaymentStatusFieldUpdateOperationsInput | $Enums.paymentStatus
+  customer_id?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.UserUpdateOneRequiredWithoutRentsNestedInput
+}
+
+export type PaymentUncheckedUpdateWithoutRentalRequestInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  transaction_id?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  paymentProvider?: Prisma.EnumpaymentProviderFieldUpdateOperationsInput | $Enums.paymentProvider
+  status?: Prisma.EnumpaymentStatusFieldUpdateOperationsInput | $Enums.paymentStatus
+  customer_id?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type PaymentUncheckedUpdateWithoutRentalRequstInput = {
+export type PaymentCreateWithoutTenantInput = {
+  id?: string
+  transaction_id: string
+  amount: number
+  paymentProvider?: $Enums.paymentProvider
+  status?: $Enums.paymentStatus
+  customer_id: string
+  sessionId?: string | null
+  paidAt?: Date | string | null
+  createdAt?: Date | string
+  rentalRequest: Prisma.RentalRequestCreateNestedOneWithoutPaymentInput
+}
+
+export type PaymentUncheckedCreateWithoutTenantInput = {
+  id?: string
+  rentalRequest_id: string
+  transaction_id: string
+  amount: number
+  paymentProvider?: $Enums.paymentProvider
+  status?: $Enums.paymentStatus
+  customer_id: string
+  sessionId?: string | null
+  paidAt?: Date | string | null
+  createdAt?: Date | string
+}
+
+export type PaymentCreateOrConnectWithoutTenantInput = {
+  where: Prisma.PaymentWhereUniqueInput
+  create: Prisma.XOR<Prisma.PaymentCreateWithoutTenantInput, Prisma.PaymentUncheckedCreateWithoutTenantInput>
+}
+
+export type PaymentCreateManyTenantInputEnvelope = {
+  data: Prisma.PaymentCreateManyTenantInput | Prisma.PaymentCreateManyTenantInput[]
+  skipDuplicates?: boolean
+}
+
+export type PaymentUpsertWithWhereUniqueWithoutTenantInput = {
+  where: Prisma.PaymentWhereUniqueInput
+  update: Prisma.XOR<Prisma.PaymentUpdateWithoutTenantInput, Prisma.PaymentUncheckedUpdateWithoutTenantInput>
+  create: Prisma.XOR<Prisma.PaymentCreateWithoutTenantInput, Prisma.PaymentUncheckedCreateWithoutTenantInput>
+}
+
+export type PaymentUpdateWithWhereUniqueWithoutTenantInput = {
+  where: Prisma.PaymentWhereUniqueInput
+  data: Prisma.XOR<Prisma.PaymentUpdateWithoutTenantInput, Prisma.PaymentUncheckedUpdateWithoutTenantInput>
+}
+
+export type PaymentUpdateManyWithWhereWithoutTenantInput = {
+  where: Prisma.PaymentScalarWhereInput
+  data: Prisma.XOR<Prisma.PaymentUpdateManyMutationInput, Prisma.PaymentUncheckedUpdateManyWithoutTenantInput>
+}
+
+export type PaymentScalarWhereInput = {
+  AND?: Prisma.PaymentScalarWhereInput | Prisma.PaymentScalarWhereInput[]
+  OR?: Prisma.PaymentScalarWhereInput[]
+  NOT?: Prisma.PaymentScalarWhereInput | Prisma.PaymentScalarWhereInput[]
+  id?: Prisma.StringFilter<"Payment"> | string
+  rentalRequest_id?: Prisma.StringFilter<"Payment"> | string
+  tenantId?: Prisma.StringFilter<"Payment"> | string
+  transaction_id?: Prisma.StringFilter<"Payment"> | string
+  amount?: Prisma.FloatFilter<"Payment"> | number
+  paymentProvider?: Prisma.EnumpaymentProviderFilter<"Payment"> | $Enums.paymentProvider
+  status?: Prisma.EnumpaymentStatusFilter<"Payment"> | $Enums.paymentStatus
+  customer_id?: Prisma.StringFilter<"Payment"> | string
+  sessionId?: Prisma.StringNullableFilter<"Payment"> | string | null
+  paidAt?: Prisma.DateTimeNullableFilter<"Payment"> | Date | string | null
+  createdAt?: Prisma.DateTimeFilter<"Payment"> | Date | string
+}
+
+export type PaymentCreateManyTenantInput = {
+  id?: string
+  rentalRequest_id: string
+  transaction_id: string
+  amount: number
+  paymentProvider?: $Enums.paymentProvider
+  status?: $Enums.paymentStatus
+  customer_id: string
+  sessionId?: string | null
+  paidAt?: Date | string | null
+  createdAt?: Date | string
+}
+
+export type PaymentUpdateWithoutTenantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   transaction_id?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
   paymentProvider?: Prisma.EnumpaymentProviderFieldUpdateOperationsInput | $Enums.paymentProvider
-  paymentStatus?: Prisma.EnumpaymentStatusFieldUpdateOperationsInput | $Enums.paymentStatus
+  status?: Prisma.EnumpaymentStatusFieldUpdateOperationsInput | $Enums.paymentStatus
+  customer_id?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rentalRequest?: Prisma.RentalRequestUpdateOneRequiredWithoutPaymentNestedInput
+}
+
+export type PaymentUncheckedUpdateWithoutTenantInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  rentalRequest_id?: Prisma.StringFieldUpdateOperationsInput | string
+  transaction_id?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  paymentProvider?: Prisma.EnumpaymentProviderFieldUpdateOperationsInput | $Enums.paymentProvider
+  status?: Prisma.EnumpaymentStatusFieldUpdateOperationsInput | $Enums.paymentStatus
+  customer_id?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PaymentUncheckedUpdateManyWithoutTenantInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  rentalRequest_id?: Prisma.StringFieldUpdateOperationsInput | string
+  transaction_id?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  paymentProvider?: Prisma.EnumpaymentProviderFieldUpdateOperationsInput | $Enums.paymentProvider
+  status?: Prisma.EnumpaymentStatusFieldUpdateOperationsInput | $Enums.paymentStatus
+  customer_id?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -535,73 +792,95 @@ export type PaymentUncheckedUpdateWithoutRentalRequstInput = {
 export type PaymentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   rentalRequest_id?: boolean
+  tenantId?: boolean
   transaction_id?: boolean
   amount?: boolean
   paymentProvider?: boolean
-  paymentStatus?: boolean
+  status?: boolean
+  customer_id?: boolean
+  sessionId?: boolean
   paidAt?: boolean
   createdAt?: boolean
-  rentalRequst?: boolean | Prisma.RentalRequestDefaultArgs<ExtArgs>
+  rentalRequest?: boolean | Prisma.RentalRequestDefaultArgs<ExtArgs>
+  tenant?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["payment"]>
 
 export type PaymentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   rentalRequest_id?: boolean
+  tenantId?: boolean
   transaction_id?: boolean
   amount?: boolean
   paymentProvider?: boolean
-  paymentStatus?: boolean
+  status?: boolean
+  customer_id?: boolean
+  sessionId?: boolean
   paidAt?: boolean
   createdAt?: boolean
-  rentalRequst?: boolean | Prisma.RentalRequestDefaultArgs<ExtArgs>
+  rentalRequest?: boolean | Prisma.RentalRequestDefaultArgs<ExtArgs>
+  tenant?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["payment"]>
 
 export type PaymentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   rentalRequest_id?: boolean
+  tenantId?: boolean
   transaction_id?: boolean
   amount?: boolean
   paymentProvider?: boolean
-  paymentStatus?: boolean
+  status?: boolean
+  customer_id?: boolean
+  sessionId?: boolean
   paidAt?: boolean
   createdAt?: boolean
-  rentalRequst?: boolean | Prisma.RentalRequestDefaultArgs<ExtArgs>
+  rentalRequest?: boolean | Prisma.RentalRequestDefaultArgs<ExtArgs>
+  tenant?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["payment"]>
 
 export type PaymentSelectScalar = {
   id?: boolean
   rentalRequest_id?: boolean
+  tenantId?: boolean
   transaction_id?: boolean
   amount?: boolean
   paymentProvider?: boolean
-  paymentStatus?: boolean
+  status?: boolean
+  customer_id?: boolean
+  sessionId?: boolean
   paidAt?: boolean
   createdAt?: boolean
 }
 
-export type PaymentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "rentalRequest_id" | "transaction_id" | "amount" | "paymentProvider" | "paymentStatus" | "paidAt" | "createdAt", ExtArgs["result"]["payment"]>
+export type PaymentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "rentalRequest_id" | "tenantId" | "transaction_id" | "amount" | "paymentProvider" | "status" | "customer_id" | "sessionId" | "paidAt" | "createdAt", ExtArgs["result"]["payment"]>
 export type PaymentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  rentalRequst?: boolean | Prisma.RentalRequestDefaultArgs<ExtArgs>
+  rentalRequest?: boolean | Prisma.RentalRequestDefaultArgs<ExtArgs>
+  tenant?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type PaymentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  rentalRequst?: boolean | Prisma.RentalRequestDefaultArgs<ExtArgs>
+  rentalRequest?: boolean | Prisma.RentalRequestDefaultArgs<ExtArgs>
+  tenant?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type PaymentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  rentalRequst?: boolean | Prisma.RentalRequestDefaultArgs<ExtArgs>
+  rentalRequest?: boolean | Prisma.RentalRequestDefaultArgs<ExtArgs>
+  tenant?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $PaymentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Payment"
   objects: {
-    rentalRequst: Prisma.$RentalRequestPayload<ExtArgs>
+    rentalRequest: Prisma.$RentalRequestPayload<ExtArgs>
+    tenant: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     rentalRequest_id: string
+    tenantId: string
     transaction_id: string
     amount: number
     paymentProvider: $Enums.paymentProvider
-    paymentStatus: $Enums.paymentStatus
+    status: $Enums.paymentStatus
+    customer_id: string
+    sessionId: string | null
     paidAt: Date | null
     createdAt: Date
   }, ExtArgs["result"]["payment"]>
@@ -998,7 +1277,8 @@ readonly fields: PaymentFieldRefs;
  */
 export interface Prisma__PaymentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  rentalRequst<T extends Prisma.RentalRequestDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RentalRequestDefaultArgs<ExtArgs>>): Prisma.Prisma__RentalRequestClient<runtime.Types.Result.GetResult<Prisma.$RentalRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  rentalRequest<T extends Prisma.RentalRequestDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RentalRequestDefaultArgs<ExtArgs>>): Prisma.Prisma__RentalRequestClient<runtime.Types.Result.GetResult<Prisma.$RentalRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  tenant<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1030,10 +1310,13 @@ export interface Prisma__PaymentClient<T, Null = never, ExtArgs extends runtime.
 export interface PaymentFieldRefs {
   readonly id: Prisma.FieldRef<"Payment", 'String'>
   readonly rentalRequest_id: Prisma.FieldRef<"Payment", 'String'>
+  readonly tenantId: Prisma.FieldRef<"Payment", 'String'>
   readonly transaction_id: Prisma.FieldRef<"Payment", 'String'>
   readonly amount: Prisma.FieldRef<"Payment", 'Float'>
   readonly paymentProvider: Prisma.FieldRef<"Payment", 'paymentProvider'>
-  readonly paymentStatus: Prisma.FieldRef<"Payment", 'paymentStatus'>
+  readonly status: Prisma.FieldRef<"Payment", 'paymentStatus'>
+  readonly customer_id: Prisma.FieldRef<"Payment", 'String'>
+  readonly sessionId: Prisma.FieldRef<"Payment", 'String'>
   readonly paidAt: Prisma.FieldRef<"Payment", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Payment", 'DateTime'>
 }

@@ -266,7 +266,7 @@ export type RentalRequestCreateInput = {
   updatedAt?: Date | string
   tanent: Prisma.UserCreateNestedOneWithoutRentalrequestInput
   property: Prisma.PropertiesCreateNestedOneWithoutRentalRequestInput
-  payment?: Prisma.PaymentCreateNestedOneWithoutRentalRequstInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutRentalRequestInput
 }
 
 export type RentalRequestUncheckedCreateInput = {
@@ -277,7 +277,7 @@ export type RentalRequestUncheckedCreateInput = {
   moveInDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
-  payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutRentalRequstInput
+  payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutRentalRequestInput
 }
 
 export type RentalRequestUpdateInput = {
@@ -288,7 +288,7 @@ export type RentalRequestUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tanent?: Prisma.UserUpdateOneRequiredWithoutRentalrequestNestedInput
   property?: Prisma.PropertiesUpdateOneRequiredWithoutRentalRequestNestedInput
-  payment?: Prisma.PaymentUpdateOneWithoutRentalRequstNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutRentalRequestNestedInput
 }
 
 export type RentalRequestUncheckedUpdateInput = {
@@ -299,7 +299,7 @@ export type RentalRequestUncheckedUpdateInput = {
   moveInDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  payment?: Prisma.PaymentUncheckedUpdateOneWithoutRentalRequstNestedInput
+  payment?: Prisma.PaymentUncheckedUpdateOneWithoutRentalRequestNestedInput
 }
 
 export type RentalRequestCreateManyInput = {
@@ -540,7 +540,7 @@ export type RentalRequestCreateWithoutPropertyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   tanent: Prisma.UserCreateNestedOneWithoutRentalrequestInput
-  payment?: Prisma.PaymentCreateNestedOneWithoutRentalRequstInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutRentalRequestInput
 }
 
 export type RentalRequestUncheckedCreateWithoutPropertyInput = {
@@ -550,7 +550,7 @@ export type RentalRequestUncheckedCreateWithoutPropertyInput = {
   moveInDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
-  payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutRentalRequstInput
+  payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutRentalRequestInput
 }
 
 export type RentalRequestCreateOrConnectWithoutPropertyInput = {
@@ -599,7 +599,7 @@ export type RentalRequestCreateWithoutTanentInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   property: Prisma.PropertiesCreateNestedOneWithoutRentalRequestInput
-  payment?: Prisma.PaymentCreateNestedOneWithoutRentalRequstInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutRentalRequestInput
 }
 
 export type RentalRequestUncheckedCreateWithoutTanentInput = {
@@ -609,7 +609,7 @@ export type RentalRequestUncheckedCreateWithoutTanentInput = {
   moveInDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
-  payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutRentalRequstInput
+  payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutRentalRequestInput
 }
 
 export type RentalRequestCreateOrConnectWithoutTanentInput = {
@@ -654,7 +654,7 @@ export type RentalRequestUpdateWithoutPropertyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tanent?: Prisma.UserUpdateOneRequiredWithoutRentalrequestNestedInput
-  payment?: Prisma.PaymentUpdateOneWithoutRentalRequstNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutRentalRequestNestedInput
 }
 
 export type RentalRequestUncheckedUpdateWithoutPropertyInput = {
@@ -664,7 +664,7 @@ export type RentalRequestUncheckedUpdateWithoutPropertyInput = {
   moveInDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  payment?: Prisma.PaymentUncheckedUpdateOneWithoutRentalRequstNestedInput
+  payment?: Prisma.PaymentUncheckedUpdateOneWithoutRentalRequestNestedInput
 }
 
 export type RentalRequestUncheckedUpdateManyWithoutPropertyInput = {
@@ -692,7 +692,7 @@ export type RentalRequestUpdateWithoutTanentInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   property?: Prisma.PropertiesUpdateOneRequiredWithoutRentalRequestNestedInput
-  payment?: Prisma.PaymentUpdateOneWithoutRentalRequstNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutRentalRequestNestedInput
 }
 
 export type RentalRequestUncheckedUpdateWithoutTanentInput = {
@@ -702,7 +702,7 @@ export type RentalRequestUncheckedUpdateWithoutTanentInput = {
   moveInDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  payment?: Prisma.PaymentUncheckedUpdateOneWithoutRentalRequstNestedInput
+  payment?: Prisma.PaymentUncheckedUpdateOneWithoutRentalRequestNestedInput
 }
 
 export type RentalRequestUncheckedUpdateManyWithoutTanentInput = {

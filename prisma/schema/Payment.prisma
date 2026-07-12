@@ -2,15 +2,19 @@ model Payment {
     id String @id @default(uuid())
 
     rentalRequest_id String @unique
-    rentalRequst RentalRequest @relation(fields: [rentalRequest_id],references: [id])
+    rentalRequest RentalRequest @relation(fields: [rentalRequest_id], references: [id])
 
-    transaction_id String @unique
+    tenantId String
+    tenant User @relation(fields: [tenantId],references: [id])
+
+    transaction_id String 
     amount Float
-    paymentProvider paymentProvider @default(CASH)
-    paymentStatus paymentStatus @default(PENDING)
+    paymentProvider paymentProvider @default(CARD)
+    status paymentStatus @default(PENDING)
+    customer_id String @unique
+    sessionId String?
     
     paidAt DateTime?
-
     createdAt DateTime @default(now())
 
 }

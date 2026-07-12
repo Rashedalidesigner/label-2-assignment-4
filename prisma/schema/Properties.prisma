@@ -10,7 +10,7 @@ model Properties {
     title String
     description String
     location String
-    price Int
+    price Float
     bedroom Int
     bathroom Int
     amenities String[]

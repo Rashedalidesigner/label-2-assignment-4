@@ -277,7 +277,7 @@ export type PropertiesWhereInput = {
   title?: Prisma.StringFilter<"Properties"> | string
   description?: Prisma.StringFilter<"Properties"> | string
   location?: Prisma.StringFilter<"Properties"> | string
-  price?: Prisma.IntFilter<"Properties"> | number
+  price?: Prisma.FloatFilter<"Properties"> | number
   bedroom?: Prisma.IntFilter<"Properties"> | number
   bathroom?: Prisma.IntFilter<"Properties"> | number
   amenities?: Prisma.StringNullableListFilter<"Properties">
@@ -320,7 +320,7 @@ export type PropertiesWhereUniqueInput = Prisma.AtLeast<{
   title?: Prisma.StringFilter<"Properties"> | string
   description?: Prisma.StringFilter<"Properties"> | string
   location?: Prisma.StringFilter<"Properties"> | string
-  price?: Prisma.IntFilter<"Properties"> | number
+  price?: Prisma.FloatFilter<"Properties"> | number
   bedroom?: Prisma.IntFilter<"Properties"> | number
   bathroom?: Prisma.IntFilter<"Properties"> | number
   amenities?: Prisma.StringNullableListFilter<"Properties">
@@ -364,7 +364,7 @@ export type PropertiesScalarWhereWithAggregatesInput = {
   title?: Prisma.StringWithAggregatesFilter<"Properties"> | string
   description?: Prisma.StringWithAggregatesFilter<"Properties"> | string
   location?: Prisma.StringWithAggregatesFilter<"Properties"> | string
-  price?: Prisma.IntWithAggregatesFilter<"Properties"> | number
+  price?: Prisma.FloatWithAggregatesFilter<"Properties"> | number
   bedroom?: Prisma.IntWithAggregatesFilter<"Properties"> | number
   bathroom?: Prisma.IntWithAggregatesFilter<"Properties"> | number
   amenities?: Prisma.StringNullableListFilter<"Properties">
@@ -414,7 +414,7 @@ export type PropertiesUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
   bedroom?: Prisma.IntFieldUpdateOperationsInput | number
   bathroom?: Prisma.IntFieldUpdateOperationsInput | number
   amenities?: Prisma.PropertiesUpdateamenitiesInput | string[]
@@ -434,7 +434,7 @@ export type PropertiesUncheckedUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
   bedroom?: Prisma.IntFieldUpdateOperationsInput | number
   bathroom?: Prisma.IntFieldUpdateOperationsInput | number
   amenities?: Prisma.PropertiesUpdateamenitiesInput | string[]
@@ -466,7 +466,7 @@ export type PropertiesUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
   bedroom?: Prisma.IntFieldUpdateOperationsInput | number
   bathroom?: Prisma.IntFieldUpdateOperationsInput | number
   amenities?: Prisma.PropertiesUpdateamenitiesInput | string[]
@@ -482,7 +482,7 @@ export type PropertiesUncheckedUpdateManyInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
   bedroom?: Prisma.IntFieldUpdateOperationsInput | number
   bathroom?: Prisma.IntFieldUpdateOperationsInput | number
   amenities?: Prisma.PropertiesUpdateamenitiesInput | string[]
@@ -775,7 +775,7 @@ export type PropertiesScalarWhereInput = {
   title?: Prisma.StringFilter<"Properties"> | string
   description?: Prisma.StringFilter<"Properties"> | string
   location?: Prisma.StringFilter<"Properties"> | string
-  price?: Prisma.IntFilter<"Properties"> | number
+  price?: Prisma.FloatFilter<"Properties"> | number
   bedroom?: Prisma.IntFilter<"Properties"> | number
   bathroom?: Prisma.IntFilter<"Properties"> | number
   amenities?: Prisma.StringNullableListFilter<"Properties">
@@ -839,7 +839,7 @@ export type PropertiesUpdateWithoutRentalRequestInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
   bedroom?: Prisma.IntFieldUpdateOperationsInput | number
   bathroom?: Prisma.IntFieldUpdateOperationsInput | number
   amenities?: Prisma.PropertiesUpdateamenitiesInput | string[]
@@ -858,7 +858,7 @@ export type PropertiesUncheckedUpdateWithoutRentalRequestInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
   bedroom?: Prisma.IntFieldUpdateOperationsInput | number
   bathroom?: Prisma.IntFieldUpdateOperationsInput | number
   amenities?: Prisma.PropertiesUpdateamenitiesInput | string[]
@@ -923,7 +923,7 @@ export type PropertiesUpdateWithoutReviewInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
   bedroom?: Prisma.IntFieldUpdateOperationsInput | number
   bathroom?: Prisma.IntFieldUpdateOperationsInput | number
   amenities?: Prisma.PropertiesUpdateamenitiesInput | string[]
@@ -942,7 +942,7 @@ export type PropertiesUncheckedUpdateWithoutReviewInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
   bedroom?: Prisma.IntFieldUpdateOperationsInput | number
   bathroom?: Prisma.IntFieldUpdateOperationsInput | number
   amenities?: Prisma.PropertiesUpdateamenitiesInput | string[]
@@ -1032,7 +1032,7 @@ export type PropertiesUpdateWithoutCategoryInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
   bedroom?: Prisma.IntFieldUpdateOperationsInput | number
   bathroom?: Prisma.IntFieldUpdateOperationsInput | number
   amenities?: Prisma.PropertiesUpdateamenitiesInput | string[]
@@ -1050,7 +1050,7 @@ export type PropertiesUncheckedUpdateWithoutCategoryInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
   bedroom?: Prisma.IntFieldUpdateOperationsInput | number
   bathroom?: Prisma.IntFieldUpdateOperationsInput | number
   amenities?: Prisma.PropertiesUpdateamenitiesInput | string[]
@@ -1067,7 +1067,7 @@ export type PropertiesUncheckedUpdateManyWithoutCategoryInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
   bedroom?: Prisma.IntFieldUpdateOperationsInput | number
   bathroom?: Prisma.IntFieldUpdateOperationsInput | number
   amenities?: Prisma.PropertiesUpdateamenitiesInput | string[]
@@ -1096,7 +1096,7 @@ export type PropertiesUpdateWithoutLnadlordInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
   bedroom?: Prisma.IntFieldUpdateOperationsInput | number
   bathroom?: Prisma.IntFieldUpdateOperationsInput | number
   amenities?: Prisma.PropertiesUpdateamenitiesInput | string[]
@@ -1114,7 +1114,7 @@ export type PropertiesUncheckedUpdateWithoutLnadlordInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
   bedroom?: Prisma.IntFieldUpdateOperationsInput | number
   bathroom?: Prisma.IntFieldUpdateOperationsInput | number
   amenities?: Prisma.PropertiesUpdateamenitiesInput | string[]
@@ -1131,7 +1131,7 @@ export type PropertiesUncheckedUpdateManyWithoutLnadlordInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
   bedroom?: Prisma.IntFieldUpdateOperationsInput | number
   bathroom?: Prisma.IntFieldUpdateOperationsInput | number
   amenities?: Prisma.PropertiesUpdateamenitiesInput | string[]
@@ -1725,7 +1725,7 @@ export interface PropertiesFieldRefs {
   readonly title: Prisma.FieldRef<"Properties", 'String'>
   readonly description: Prisma.FieldRef<"Properties", 'String'>
   readonly location: Prisma.FieldRef<"Properties", 'String'>
-  readonly price: Prisma.FieldRef<"Properties", 'Int'>
+  readonly price: Prisma.FieldRef<"Properties", 'Float'>
   readonly bedroom: Prisma.FieldRef<"Properties", 'Int'>
   readonly bathroom: Prisma.FieldRef<"Properties", 'Int'>
   readonly amenities: Prisma.FieldRef<"Properties", 'String[]'>

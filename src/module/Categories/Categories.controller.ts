@@ -3,6 +3,7 @@ import httpStatus from "http-status";
 import { CatchAsync } from "../../utility/CatchAsync";
 import { CategoryService } from "./Categories.service";
 import { SendResponse } from "../../utility/SendResponse";
+import { error } from "node:console";
 
 const getAllCategory = CatchAsync(async(req:Request,res:Response,next:NextFunction)=>{
     const result = await CategoryService.getallCategory();

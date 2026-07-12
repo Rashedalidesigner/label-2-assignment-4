@@ -2,7 +2,11 @@ import { prisma } from "../../lib/prisma"
 import { ICategories } from "./Categories.interface";
 
 const getallCategory = async()=>{
-    const getallcategory = await prisma.categories.findMany();
+    const getallcategory = await prisma.categories.findMany({
+        include:{
+            prpperties:true
+        }
+    });
     return getallcategory;
 }
 
@@ -12,7 +16,7 @@ const createCategore = async (categorydata: ICategories) => {
         data: {
             name,
             description
-        }
+        },
     });
     return creteCategore;
 };

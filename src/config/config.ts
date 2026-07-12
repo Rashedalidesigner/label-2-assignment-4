@@ -16,6 +16,7 @@ const config = {
     refresh_token_expeir: process.env.REFRESH_TOKEN_EXPEIR as string,
     access_token_solt_round : process.env.ACCESS_TOKEN_SOLT_ROUND as string,
     refresh_token_solt_round : process.env.REFRESH_ROKEN_SOLT_ROUND as string,
+    stripe_secret_key : process.env.STRIPE_SECRET_KEY as string
 };
 
 // console.log(config.database_url);
