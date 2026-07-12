@@ -7,7 +7,7 @@ const submitRentalRequest = async (userdata:IRentalRequest)=>{
         data:{
             tenant_id,
             property_id,
-            moveInDate
+            moveInDate:new Date(moveInDate)
         }
     });
     return result;
@@ -40,8 +40,19 @@ const getReltalRequestDetiles = async (id:string)=>{
     return result;
 }
 
+const landlordRequest = async (userid:string)=>{
+    const landlordProperty = prisma.rentalRequest.findMany({
+        where:{
+            property:{
+                landlord_id:userid
+            }
+        }
+    });
+    return landlordProperty;
+}
+
 
 export const RentalReequestService = {
-    submitRentalRequest,updateRentalRequest,
+    submitRentalRequest,updateRentalRequest,landlordRequest,
     getRentalRequest,getReltalRequestDetiles
 }

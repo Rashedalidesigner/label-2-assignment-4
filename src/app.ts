@@ -25,7 +25,7 @@ app.get("/",(req:Request,res:Response)=>{
 
 app.use("/api/user",userRote);
 app.use("/api/auth",authRoute);
-app.use("/api/rentals",RentalRequestRoute);
+app.use("/api",RentalRequestRoute);
 app.use("/api",PropertiesRoute);
 app.use("/api",ReviewRoute);
 app.use("/api",CategoryRoute);

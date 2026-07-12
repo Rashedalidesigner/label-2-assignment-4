@@ -20,7 +20,7 @@ const getallRentalRequest = CatchAsync(async(req:Request,res:Response,next:NextF
     SendResponse(res,{
         success:true,
         statusCode:httpStatus.CREATED,
-        message:"Request Sabmit Successfull",
+        message:"Get All Rental Request Successfull",
         data:RentalRequest
     })
 });
@@ -30,12 +30,25 @@ const getDetileRentalRequest = CatchAsync(async(req:Request,res:Response,next:Ne
     SendResponse(res,{
         success:true,
         statusCode:httpStatus.CREATED,
-        message:"Request Sabmit Successfull",
+        message:"Get Request Detile",
+        data:RentalRequest
+    })
+});
+const getlandlordRequest = CatchAsync(async(req:Request,res:Response,next:NextFunction)=>{
+    const {id}= req.user!;
+    const RentalRequest = await RentalReequestService.getReltalRequestDetiles(id);
+
+    SendResponse(res,{
+        success:true,
+        statusCode:httpStatus.CREATED,
+        message:"Get Request Detile",
         data:RentalRequest
     })
 });
 
 
+
+
 export const RentalRequestController = {
-    getDetileRentalRequest,getallRentalRequest,sabmitRentalRequest
+    getDetileRentalRequest,getallRentalRequest,sabmitRentalRequest,getlandlordRequest
 }

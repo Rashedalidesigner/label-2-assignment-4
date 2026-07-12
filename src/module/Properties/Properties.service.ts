@@ -1,10 +1,10 @@
 import { Query } from "pg";
 import { prisma } from "../../lib/prisma";
 import { IProperties, IPropertyQuey } from "./property.interface";
-import { title } from "node:process";
 
 const createProperties = async (properties:IProperties)=>{    
     const {landlord_id,category_id,title,description,bathroom,bedroom,location,price,amenities} = properties;
+    // console.log(properties);
     const result =await prisma.properties.create({
         data:{
             landlord_id,
@@ -21,18 +21,18 @@ const createProperties = async (properties:IProperties)=>{
     return result
 };
 
-const getallProperties = async (query: IPropertyQuey)=>{
-    const result = await prisma.properties.findMany({
-        where:{
-            AND:[
-                query.price? {title:query.title}:{},
-                query.location?{location:query.location}:{},
-                query.category?{category:query.category}:{}
-            ]
-        }
-    })
-    return result;
-}
+const getallProperties = async (query?: any) => {
+    const conditions = [
+        query?.title ? { title: query.title } : null,
+        query?.location ? { location: query.location } : null,
+        query?.category ? { category: query.category } : null,
+        query?.minPrice ? { price: { gte: Number(query.minPrice) } } : null,
+        query?.maxPrice ? { price: { lte: Number(query.maxPrice) } } : null,
+    ].filter(Boolean) as []
+    return await prisma.properties.findMany({
+        where: conditions.length > 0 ? { AND: conditions } : {}, 
+    });
+};
 
 const getPropertiesDetile = async (id:string)=>{
     const result =await prisma.properties.findMany({
@@ -44,8 +44,8 @@ const getPropertiesDetile = async (id:string)=>{
     return result;
 };
 
-const updateProperties = async (properties:IProperties)=>{
-    const {id,landlord_id,category_id,title,description,bathroom,bedroom,location,price,amenities} = properties;
+const updateProperties = async (id:string,properties:IProperties)=>{
+    const {landlord_id,category_id,title,description,bathroom,bedroom,location,price,amenities} = properties;
     const result =await prisma.properties.update({
         where:{
             id
@@ -75,6 +75,6 @@ const deleteproperties = async (id:string)=>{
     return result;
 };
 
-export const Propertiescontroller = {
+export const PropertyService = {
     createProperties,getallProperties,getPropertiesDetile,updateProperties,deleteproperties
 };
