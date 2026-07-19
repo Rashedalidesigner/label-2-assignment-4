@@ -3,7 +3,6 @@ import { IReview } from "./review.interface";
 
  const createReview = async (reviewdata:IReview,tenant_id:string)=>{
     const {properties_id,rating,description}= reviewdata;
-    console.log(reviewdata);
     const result = await prisma.review.create({
         data:{
             tenant_id,
