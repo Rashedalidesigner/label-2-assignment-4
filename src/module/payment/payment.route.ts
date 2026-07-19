@@ -5,20 +5,20 @@ import { paymentControler } from "./payment.controller";
 const router = Router();
 
 router.post(
-  "/create",
+  "/payments/create",
   auth("TENANT"),
   paymentControler.createPayment
 );
 
 router.post(
-  "/confirm",
+  "/payments/confirm",
   auth("LANDLORD","TENANT"),
   paymentControler.confirmPayment
 );
 
 router.get(
-  "/",
-  auth("ADMIN","LANDLORD","TENANT"),
+  "/payments/",
+  auth("TENANT"),
   paymentControler.getPayments
 );
 

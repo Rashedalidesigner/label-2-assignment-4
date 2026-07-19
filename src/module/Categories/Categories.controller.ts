@@ -3,9 +3,9 @@ import httpStatus from "http-status";
 import { CatchAsync } from "../../utility/CatchAsync";
 import { CategoryService } from "./Categories.service";
 import { SendResponse } from "../../utility/SendResponse";
-import { error } from "node:console";
 
 const getAllCategory = CatchAsync(async(req:Request,res:Response,next:NextFunction)=>{
+    console.log("from");
     const result = await CategoryService.getallCategory();
     SendResponse(res,{
         success:true,
@@ -38,7 +38,7 @@ const deleteCategory = CatchAsync(async(req:Request,res:Response,next:NextFuncti
     SendResponse(res,{
         success:true,
         statusCode:httpStatus.OK,
-        message:"Category Updated Successfull",
+        message:"Category delete Successfull",
         data:result
     })
 });

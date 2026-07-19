@@ -7,7 +7,7 @@ import config from "../../config/config";
 
 const login = async (userdata:ILogin)=>{
     const {email,password} = userdata;
-
+    console.log(email,password);
     const userExits = await prisma.user.findUnique({where:{email}});
     if(!userExits){
         throw new Error("user not Exits");

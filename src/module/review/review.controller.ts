@@ -5,7 +5,8 @@ import { SendResponse } from "../../utility/SendResponse";
 import httpStatus from "http-status";
 
 const createReview = CatchAsync(async(req:Request,res:Response,next:NextFunction)=>{
-    const result =await reviewServerice.createReview(req.body);
+    const tenant_id = req.user?.id as string;
+    const result =await reviewServerice.createReview(req.body,tenant_id);
     SendResponse(res,{
         success:true,
         statusCode:httpStatus.CREATED,

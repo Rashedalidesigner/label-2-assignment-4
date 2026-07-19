@@ -2,8 +2,7 @@ import dotenv from "dotenv";
 import path from "node:path";
 
 dotenv.config({path:path.join(process.cwd(),".env")});
-
-
+// console.log({path:path.join(process.cwd(),".env")});
 
 const config = {
     database_url : process.env.DATABASE_URL,
@@ -19,6 +18,6 @@ const config = {
     stripe_secret_key : process.env.STRIPE_SECRET_KEY as string
 };
 
-// console.log(config.database_url);
+// console.log(config.stripe_secret_key);
 
 export default config;

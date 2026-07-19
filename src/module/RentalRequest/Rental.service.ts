@@ -1,8 +1,9 @@
+import { rentalStatus } from "../../../prisma/generated/prisma/enums";
 import { prisma } from "../../lib/prisma";
 import { IRentalRequest } from "./RentalRequest.interface";
 
-const submitRentalRequest = async (userdata:IRentalRequest)=>{
-    const {tenant_id,property_id,moveInDate} = userdata;
+const submitRentalRequest = async (userdata:IRentalRequest,tenant_id:string)=>{
+    const {property_id,moveInDate} = userdata;
     const result = prisma.rentalRequest.create({
         data:{
             tenant_id,
@@ -12,6 +13,15 @@ const submitRentalRequest = async (userdata:IRentalRequest)=>{
     });
     return result;
 };
+
+const getrentalrequestforuser = async (id:string)=>{
+    const result = prisma.rentalRequest.findMany({where:{tenant_id:id}});
+    return result;
+}
+const getrentalrequestdetileforuser = async (tenantId:string,id:string)=>{
+    const result = prisma.rentalRequest.findMany({where:{tenant_id:tenantId,id:id}});
+    return result;
+}
 
 const getRentalRequest = async ()=>{
     const result = prisma.rentalRequest.findMany();
@@ -40,12 +50,25 @@ const getReltalRequestDetiles = async (id:string)=>{
     return result;
 }
 
-const landlordRequest = async (userid:string)=>{
-    const landlordProperty = prisma.rentalRequest.findMany({
+const landlordrentalrequest = async (userid:string)=>{
+    const landlordProperty = prisma.properties.findMany({
         where:{
-            property:{
-                landlord_id:userid
-            }
+            landlord_id:userid
+        },
+        include:{
+            rentalRequest:true
+        }
+    });
+    return landlordProperty;
+}
+const landlordrentalrequestpermetion = async (id:string,status:rentalStatus)=>{
+    console.log(status);
+    const landlordProperty = prisma.rentalRequest.update({
+        where:{
+            id
+        },
+        data:{
+            status
         }
     });
     return landlordProperty;
@@ -53,6 +76,6 @@ const landlordRequest = async (userid:string)=>{
 
 
 export const RentalReequestService = {
-    submitRentalRequest,updateRentalRequest,landlordRequest,
-    getRentalRequest,getReltalRequestDetiles
+    submitRentalRequest,landlordrentalrequest,updateRentalRequest,getrentalrequestdetileforuser,
+    getRentalRequest,getReltalRequestDetiles,getrentalrequestforuser,landlordrentalrequestpermetion
 }

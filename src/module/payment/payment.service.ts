@@ -14,8 +14,10 @@ const createPayment = async (rentalId: string) => {
   
     if (!rental) {
       throw new Error("Rental not found");
+    };
+    if(rental.status==="APPROVED"){
+      throw new Error("request is not Approved");
     }
-  
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "payment",
@@ -37,6 +39,8 @@ const createPayment = async (rentalId: string) => {
         rentalId,
       },
     });
+
+    // console.log(session)
   
     const transactionId = typeof session.payment_intent === "string"
       ? session.payment_intent
@@ -58,6 +62,7 @@ const createPayment = async (rentalId: string) => {
 };
 
 const confirmPayment = async (sessionId: string) => {
+  // console.log(sessionId.);
   const session = await stripe.checkout.sessions.retrieve(
     sessionId
   );
@@ -78,7 +83,7 @@ const confirmPayment = async (sessionId: string) => {
     },
     data: {
       status: paymentStatus.COMPLETED,
-      transactionId:
+      transaction_id:
         session.payment_intent?.toString(),
       paidAt: new Date(),
     },
@@ -97,7 +102,7 @@ const confirmPayment = async (sessionId: string) => {
 const payments = async (id:string)=>{
     const result = await prisma.payment.findMany({
         where:{
-            id
+            tenantId:id
         }
     });
     return result;

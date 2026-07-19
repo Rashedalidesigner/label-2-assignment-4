@@ -29,6 +29,6 @@ app.use("/api",RentalRequestRoute);
 app.use("/api",PropertiesRoute);
 app.use("/api",ReviewRoute);
 app.use("/api",CategoryRoute);
-app.use("/api/payments", paymentrouter);
+app.use("/api", paymentrouter);
 
 export default app;

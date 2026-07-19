@@ -3,7 +3,6 @@ import { CatchAsync } from "../../utility/CatchAsync";
 import { SendResponse } from "../../utility/SendResponse";
 import httpStatus from "http-status";
 import { PropertyService } from "./Properties.service";
-import { url } from "node:inspector";
 
 const CreateProperties = CatchAsync(async(req:Request,res:Response,next:NextFunction)=>{
     const createdProperties = await PropertyService.createProperties(req.body)
@@ -52,7 +51,8 @@ const deleteProperties = CatchAsync(async(req:Request,res:Response,next:NextFunc
     if(!id){
         return Error("plase provide a id");
     }
-    const createdProperties = await PropertyService.deleteproperties(id);
+    const ids = id.trim();
+    const createdProperties = await PropertyService.deleteproperties(ids);
 
     SendResponse(res,{
         success:true,

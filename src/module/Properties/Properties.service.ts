@@ -31,6 +31,9 @@ const getallProperties = async (query?: any) => {
     ].filter(Boolean) as []
     return await prisma.properties.findMany({
         where: conditions.length > 0 ? { AND: conditions } : {}, 
+        include:{
+            review:true
+        }
     });
 };
 
@@ -67,9 +70,18 @@ const updateProperties = async (id:string,properties:IProperties)=>{
 };
 
 const deleteproperties = async (id:string)=>{
+    const data = await prisma.properties.findUnique({
+        where:{
+            id:id
+        }
+    });
+    // console.log(data)
+    if(!data){
+        return new Error("data not found ")
+    }
     const result =await prisma.properties.delete({
         where:{
-            id
+            id:id
         }
     });
     return result;

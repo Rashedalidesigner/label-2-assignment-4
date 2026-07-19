@@ -4,7 +4,7 @@ model RentalRequest {
     tenant_id String
     tanent User @relation(fields: [tenant_id],references: [id])
 
-    property_id String
+    property_id String @unique
     property Properties @relation(fields: [property_id],references: [id])
 
     status rentalStatus @default(PENDING)

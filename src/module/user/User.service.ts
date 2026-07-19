@@ -12,9 +12,7 @@ const createUserToDb = async(userdata:IUser)=>{
     if(role==="ADMIN"){
         throw new Error("plase type correct role");
     }
-
-    const hashedPassword =await bcrypt.hash(password,Number(config.access_token_solt_round));
-
+    const hashedPassword = await bcrypt.hash(password,Number(config.access_token_solt_round));
     const user = prisma.user.create({
         data:{
             name,

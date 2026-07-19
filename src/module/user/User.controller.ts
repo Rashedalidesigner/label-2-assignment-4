@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express"
+import { NextFunction, Request, Response } from "express";
 import { CatchAsync } from "../../utility/CatchAsync"
 import { userService } from "./User.service";
 import { SendResponse } from "../../utility/SendResponse";
