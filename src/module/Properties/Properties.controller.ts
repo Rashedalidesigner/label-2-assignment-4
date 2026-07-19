@@ -14,7 +14,7 @@ const CreateProperties = CatchAsync(async(req:Request,res:Response,next:NextFunc
     });
 });
 const getAllProperties = CatchAsync(async(req:Request,res:Response,next:NextFunction)=>{
-console.log("first","from get all property page")
+// console.log("first","from get all property page")
     const createdProperties = await PropertyService.getallProperties(req.query);
 
     SendResponse(res,{
@@ -25,7 +25,7 @@ console.log("first","from get all property page")
     });
 });
 const getPropertiesDetiles = CatchAsync(async(req:Request,res:Response,next:NextFunction)=>{
-    console.log("first")
+    // console.log("first")
     const id = req.params.id as string;
     const result = await PropertyService.getPropertiesDetile(id);
     SendResponse(res,{
