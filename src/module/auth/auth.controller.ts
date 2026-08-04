@@ -10,7 +10,6 @@ import { Token } from "../../utility/Token";
 
 const login = CatchAsync(async (req:Request,res:Response,next:NextFunction)=>{
     const {access_token,refresh_token} = await authService.login(req.body);
-    console.log(access_token,refresh_token);
     res.cookie("accessToken",access_token,{
         httpOnly:true,
         secure:false,
@@ -29,7 +28,12 @@ const login = CatchAsync(async (req:Request,res:Response,next:NextFunction)=>{
         success:true,
         statusCode:httpStatus.OK,
         message:"login Successfull",
-        data:{access_token,refresh_token}
+        data:{
+            
+            name:req.body.name,
+            email:req.body.email,
+            role:req.body.role,
+        }
     })
 });
 
@@ -63,7 +67,7 @@ const refreshToken = CatchAsync(async(req:Request,res:Response,next:NextFunction
         success:true,
         statusCode:httpStatus.CREATED,
         message:"Access Token create successfull",
-        data:{token}
+        data:userdata
     });
 });
 
