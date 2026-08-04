@@ -218,11 +218,11 @@ export type RentalRequestOrderByWithRelationInput = {
 
 export type RentalRequestWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  property_id?: string
   AND?: Prisma.RentalRequestWhereInput | Prisma.RentalRequestWhereInput[]
   OR?: Prisma.RentalRequestWhereInput[]
   NOT?: Prisma.RentalRequestWhereInput | Prisma.RentalRequestWhereInput[]
   tenant_id?: Prisma.StringFilter<"RentalRequest"> | string
-  property_id?: Prisma.StringFilter<"RentalRequest"> | string
   status?: Prisma.EnumrentalStatusFilter<"RentalRequest"> | $Enums.rentalStatus
   moveInDate?: Prisma.DateTimeFilter<"RentalRequest"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"RentalRequest"> | Date | string
@@ -230,7 +230,7 @@ export type RentalRequestWhereUniqueInput = Prisma.AtLeast<{
   tanent?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   property?: Prisma.XOR<Prisma.PropertiesScalarRelationFilter, Prisma.PropertiesWhereInput>
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
-}, "id">
+}, "id" | "property_id">
 
 export type RentalRequestOrderByWithAggregationInput = {
   id?: Prisma.SortOrder

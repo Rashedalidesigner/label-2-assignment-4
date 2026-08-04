@@ -4,7 +4,7 @@ model User {
     email String @unique
     password String
     role role @default(TENANT)
-    phone String
+    phone String?
     is_Banned Boolean @default(false)
 
     cretedAt DateTime @default(now())

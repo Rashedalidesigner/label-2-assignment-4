@@ -16,7 +16,6 @@ const login = async (userdata:ILogin)=>{
     if(!password_is_Mached){
         throw new Error("password is invalid! plase try again");
     }
-
     const token_data = {
         id:userExits.id,
         name:userExits.name,
@@ -33,8 +32,6 @@ const login = async (userdata:ILogin)=>{
 const refreshToken = ()=>{
     
 }
-
-
 
 export const authService = {
     login,refreshToken

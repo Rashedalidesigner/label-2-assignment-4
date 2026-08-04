@@ -10,6 +10,7 @@ import { Token } from "../../utility/Token";
 
 const login = CatchAsync(async (req:Request,res:Response,next:NextFunction)=>{
     const {access_token,refresh_token} = await authService.login(req.body);
+    console.log(access_token,refresh_token);
     res.cookie("accessToken",access_token,{
         httpOnly:true,
         secure:false,
