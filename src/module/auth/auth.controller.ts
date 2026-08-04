@@ -28,12 +28,7 @@ const login = CatchAsync(async (req:Request,res:Response,next:NextFunction)=>{
         success:true,
         statusCode:httpStatus.OK,
         message:"login Successfull",
-        data:{
-            
-            name:req.body.name,
-            email:req.body.email,
-            role:req.body.role,
-        }
+        data:jwt.decode(access_token)
     })
 });
 
@@ -47,10 +42,13 @@ const refreshToken = CatchAsync(async(req:Request,res:Response,next:NextFunction
     if(!verifiedToken){
         throw new Error("plase provide verified token");
     }
+    // console.log(verifiedToken)
     const {name,email,role,id} = verifiedToken as jwt.JwtPayload;
+
     const userdata = {
         name,email,role,id
     }
+    // console.log(userdata)
     
     const user = prisma.user.findUnique({where:{email}});
     if(!user){

@@ -7,7 +7,6 @@ import config from "../../config/config";
 
 const login = async (userdata:ILogin)=>{
     const {email,password} = userdata;
-    console.log(email,password);
     const userExits = await prisma.user.findUnique({where:{email}});
     if(!userExits){
         throw new Error("user not Exits");
@@ -22,6 +21,7 @@ const login = async (userdata:ILogin)=>{
         email:userExits.email,
         role:userExits.role
     }
+    // console.log(token_data);
     const tokendata = {
         access_token:await  Token(token_data,config.access_token_secret,config.access_token_expeir),
         refresh_token:await Token(token_data,config.refresh_token_secret,config.refresh_token_expeir)
