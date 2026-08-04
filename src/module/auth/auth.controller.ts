@@ -22,13 +22,21 @@ const login = CatchAsync(async (req:Request,res:Response,next:NextFunction)=>{
         secure:false,
         sameSite:"none",
         maxAge:1000*60*60*24*7
-    })
+    });
 
+    const decoded = jwt.decode(access_token) as jwt.JwtPayload;
+    // console.log(decoded)
+    const user = {
+        id:decoded.id,
+        name:decoded.name,
+        email:decoded.email,
+        role:decoded.role
+    }
     SendResponse(res,{
         success:true,
         statusCode:httpStatus.OK,
         message:"login Successfull",
-        data:jwt.decode(access_token)
+        data:user
     })
 });
 
