@@ -36,7 +36,7 @@ const login = CatchAsync(async (req:Request,res:Response,next:NextFunction)=>{
         success:true,
         statusCode:httpStatus.OK,
         message:"login Successfull",
-        data:user
+        data:{user}
     })
 });
 
